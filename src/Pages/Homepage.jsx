@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Header from '../Components/Header'
 import axios from 'axios';
 import ThemeToggle from './../Components/ThemeToggle';
+import ProductLists from '../Components/ProductLists';
 
 const Homepage = () => {
     const [products, setProducts] = useState([]);
@@ -17,6 +18,9 @@ const Homepage = () => {
           <div className='flex justify-between'>
             <Header/>
             <ThemeToggle/>
+          </div>
+          <div>
+          <ProductLists products={products} />
           </div>
         </div>
     );
