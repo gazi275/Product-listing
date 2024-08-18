@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+
 import Header from '../Components/Header';
 import SearchBar from '../Components/SearchBar';
 import FilterPanel from '../Components/FilterPanel';
@@ -7,6 +7,7 @@ import ProductLists from '../Components/ProductLists';
 import Pagination from '../Components/Pagination';
 import ThemeToggle from '../Components/ThemeToggle';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 const Homepage = () => {
   const [products, setProducts] = useState([]);

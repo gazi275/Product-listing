@@ -22,7 +22,7 @@ const ThemeToggle = () => {
     <button
       onClick={toggleTheme}
       aria-label={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-      className="p-4 border  rounded  dark:bg-gray-800 text-gray-800 dark:text-gray-200"
+      className="p-3 border  rounded  dark:bg-gray-800 text-gray-800 dark:text-gray-200"
     >
       {darkMode ? <MdLightMode size='2em' /> : <MdDarkMode size='2em' />}
     </button>
