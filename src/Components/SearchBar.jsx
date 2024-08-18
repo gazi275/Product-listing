@@ -3,7 +3,7 @@ const SearchBar = ({ setSearchTerm }) => {
       <input
         type="text"
         placeholder="Search products..."
-        className="border p-2 w-full md:w-1/3"
+        className="border p-2 w-full md:w-1/5"
         onChange={(e) => setSearchTerm(e.target.value)}
       />
     );

@@ -1,5 +1,3 @@
-
-
 const SortPanel = ({ setSortOption }) => {
     return (
       <select
@@ -18,3 +16,4 @@ const SortPanel = ({ setSortOption }) => {
   };
   
   export default SortPanel;
+  
