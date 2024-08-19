@@ -14,8 +14,8 @@ const FilterPanel = ({ setCategory, priceRange, setPriceRange, setInStock }) => 
 
   return (
     <div className="w-full p-4">
-      <h2 className="text-xl font-bold mb-4 dark:text-white">Filter by Categories</h2>
-      <div className="mb-4">
+      <h2 className="text-xl text-center font-bold mb-4 dark:text-white">Filter by Categories</h2>
+      <div className="mb-4 flex flex-col justify-center items-center ">
       <button
   onClick={() => setCategory('')}
   className="my-1 w-10/12 h-12 bg-white rounded-md border border-transparent text-lg font-semibold text-dark shadow-1 hover:bg-gray-400 disabled:border-gray-300 disabled:bg-gray-300 disabled:text-dark-500 dark:bg-gray-200 dark:shadow-box-dark dark:hover:bg-dark-300"
@@ -48,25 +48,25 @@ const FilterPanel = ({ setCategory, priceRange, setPriceRange, setInStock }) => 
 </button>
 </div>
 
-      <h2 className="text-xl font-bold mb-4 dark:text-white">Filter by Price</h2>
-      <div className="mb-4">
+      <h2 className="text-xl font-bold mb-4 dark:text-white text-center">Filter by Price</h2>
+      <div className="mb-4 sm:flex sm:flex-col flex flex-col justify-center items-center sm:justify-center sm:items-center">
         <input
           type="number"
           placeholder="Min Price"
           value={priceRange.min === 0 ? '' : priceRange.min}
           onChange={handleMinPriceChange}
-          className="w-10/12 p-2 mb-2 dark:bg-gray-200 border rounded dark:text-black"
+          className="md:w-10/12 mx-auto p-2 mb-2 dark:bg-gray-200 border rounded dark:text-black"
         />
         <input
           type="number"
           placeholder="Max Price"
           value={priceRange.max === Infinity ? '' : priceRange.max}
           onChange={handleMaxPriceChange}
-          className="w-10/12 p-2 mb-4 border dark:bg-gray-200 rounded dark:text-black"
+          className="md:w-10/12 mx-auto p-2 mb-4 border dark:bg-gray-200 rounded dark:text-black"
         />
       </div>
 
-      <h2 className="text-xl font-bold mb-4 dark:text-white">Availability</h2>
+      <h2 className="text-xl text-center font-bold mb-4 dark:text-white">Availability</h2>
       <div className="mb-4">
         <label className="flex items-center  dark:text-white">
           <input

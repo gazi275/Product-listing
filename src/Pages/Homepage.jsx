@@ -97,22 +97,22 @@ const Homepage = () => {
         <Header />
         <ThemeToggle />
       </div>
-      <div className="flex flex-col md:gap-20 md:flex-row my-4">
+      <div className="flex flex-col justify-center items-center md:gap-14 lg:gap-20 md:flex-row my-4 ">
   {/* Search Bar */}
-  <div className="w-1/5">
+  <div className=" md:w-1/5">
     <SearchBar setSearchTerm={setSearchTerm} />
   </div>
 
   
   {/* Showing Products and View Toggle */}
-  <div className="flex justify-between items-center w-3/4">
+  <div className="flex justify-between flex-wrap gap-4 my-2 sm:gap-10 md:justify-between items-center md:w-3/4">
     {/* Product Count */}
-    <div className="flex items-center">
+    <div className="">
       <p className='text-lg font-semibold dark:text-white'>Showing {filteredProducts.length} Products</p>
     </div>
 
     {/* View Toggle Buttons */}
-    <div className="flex items-center">
+    <div className="">
       <button
         onClick={() => setView('grid')}
         className={`mr-2 p-2 rounded-lg ${
@@ -133,15 +133,15 @@ const Homepage = () => {
   </div>
 </div>
 
-      <div className="flex flex-col md:flex-row">
-        <div className="md:w-1/4 mr-2">
-          <FilterPanel
+      <div className="flex flex-col md:flex-row ">
+        <div className="flex flex-col items-center md:w-1/4 mr-2 mb-3 ">
+          <FilterPanel 
             setCategory={setCategory}
             priceRange={priceRange}
             setPriceRange={setPriceRange}
             setInStock={setInStock}
           />
-          <SortPanel setSortOption={setSortOption} />
+          <SortPanel  setSortOption={setSortOption} />
         </div>
         <ProductLists products={currentProducts} view={view} />
       </div>
