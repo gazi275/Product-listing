@@ -1,8 +1,23 @@
-# React + Vite
+# E-Commerce Product Listing
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This is a React.js project for an e-commerce product listing page. The page allows users to view, search, filter, and sort products fetched from the FakeStoreAPI.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+
+- **Product Listing:** Displays products in a grid format.
+- **Search:** Users can search for products by name.
+- **Filter:** Filter products by category.
+- **Sort:** Sort products by price, name, and rating.
+- **Responsive Design:** Fully responsive and works on mobile, tablet, and desktop.
+- **Pagination:** (Bonus) Pagination for the product list.
+- **Theme Toggle:** (Bonus) Toggle between light and dark modes.
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/ecommerce-product-listing.git
+   cd ecommerce-product-listing
+
