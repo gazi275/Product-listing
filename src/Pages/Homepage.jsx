@@ -1,4 +1,3 @@
-
 import Header from '../Components/Header';
 import SearchBar from '../Components/SearchBar';
 import FilterPanel from '../Components/FilterPanel';
@@ -8,6 +7,7 @@ import Pagination from '../Components/Pagination';
 import ThemeToggle from '../Components/ThemeToggle';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { FaTh, FaBars } from 'react-icons/fa';
 
 const Homepage = () => {
   const [products, setProducts] = useState([]);
@@ -18,7 +18,8 @@ const Homepage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(6); // Number of products per page
   const [priceRange, setPriceRange] = useState({ min: 0, max: Infinity });
-  const [inStock, setInStock] = useState(false);                           
+  const [inStock, setInStock] = useState(false);
+  const [view, setView] = useState('grid'); // State to manage view (grid or list)
 
   // Fetch products from API
   useEffect(() => {
@@ -46,14 +47,17 @@ const Homepage = () => {
       );
     }
 
-
-    updatedProducts = updatedProducts.filter(product => 
-      product.price >= priceRange.min && product.price <= priceRange.max
+    // Price Range Filter
+    updatedProducts = updatedProducts.filter(
+      (product) =>
+        product.price >= priceRange.min && product.price <= priceRange.max
     );
 
     // Apply Availability Filter
     if (inStock) {
-      updatedProducts = updatedProducts.filter(product => product.rating.count > 0);
+      updatedProducts = updatedProducts.filter(
+        (product) => product.rating.count > 0
+      );
     }
 
     // Sorting
@@ -79,7 +83,10 @@ const Homepage = () => {
   // Get current products for pagination
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = filteredProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -90,20 +97,53 @@ const Homepage = () => {
         <Header />
         <ThemeToggle />
       </div>
-      <div className="flex flex-col md:flex-row justify-between my-4">
-        <SearchBar setSearchTerm={setSearchTerm} />
-      </div>
-      <div className="flex">
-        <div className="w-1/4 mr-2">
-          <FilterPanel 
-             setCategory={setCategory}
-             priceRange={priceRange}
-             setPriceRange={setPriceRange}
-             setInStock={setInStock}
+      <div className="flex flex-col md:gap-20 md:flex-row my-4">
+  {/* Search Bar */}
+  <div className="w-1/5">
+    <SearchBar setSearchTerm={setSearchTerm} />
+  </div>
+
+  
+  {/* Showing Products and View Toggle */}
+  <div className="flex justify-between items-center w-3/4">
+    {/* Product Count */}
+    <div className="flex items-center">
+      <p className='text-lg font-semibold dark:text-white'>Showing {filteredProducts.length} Products</p>
+    </div>
+
+    {/* View Toggle Buttons */}
+    <div className="flex items-center">
+      <button
+        onClick={() => setView('grid')}
+        className={`mr-2 p-2 rounded-lg ${
+          view === 'grid' ? 'bg-blue-500 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
+        }`}
+      >
+        <FaTh />
+      </button>
+      <button
+        onClick={() => setView('list')}
+        className={`p-2 rounded-lg ${
+          view === 'list' ? 'bg-blue-500 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
+        }`}
+      >
+        <FaBars />
+      </button>
+    </div>
+  </div>
+</div>
+
+      <div className="flex flex-col md:flex-row">
+        <div className="md:w-1/4 mr-2">
+          <FilterPanel
+            setCategory={setCategory}
+            priceRange={priceRange}
+            setPriceRange={setPriceRange}
+            setInStock={setInStock}
           />
           <SortPanel setSortOption={setSortOption} />
         </div>
-        <ProductLists products={currentProducts} />
+        <ProductLists products={currentProducts} view={view} />
       </div>
       <Pagination
         productsPerPage={productsPerPage}

@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
@@ -46,10 +46,11 @@ const SingleProduct = () => {
             <FaStar className="text-yellow-500" />
             <span className="ml-1 text-lg text-gray-700 dark:text-gray-300">{product.rating.rate}</span>
           </div>
-
-          <button className="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300">
-            Add to Cart
-          </button>
+<Link to='/'>
+<button className="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300">
+            Home
+          </button></Link>
+          
         </div>
       </div>
     </div>
