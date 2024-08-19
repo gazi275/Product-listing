@@ -1,5 +1,5 @@
 import { FaStar } from "react-icons/fa";
-
+import { Link } from 'react-router-dom';
 
 const truncateDescription = (description, maxLength) => {
   if (description.length <= maxLength) return description;
@@ -8,7 +8,7 @@ const truncateDescription = (description, maxLength) => {
 
 const ProductCard = ({ product }) => {
   return (
-    <div className="relative dark:bg-[#1A1A2E] border p-4 rounded-lg shadow-lg mb-4 transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl hover:bg-gray-100 hover:z-10 dark:hover:bg-gray-800">
+    <Link to={`/product/${product.id}`} className="relative dark:bg-[#1A1A2E] border p-4 rounded-lg shadow-lg mb-4 transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl hover:bg-gray-100 hover:z-10 dark:hover:bg-gray-800">
     <div className="overflow-hidden rounded-lg">
       <img
         src={product.image}
@@ -26,7 +26,7 @@ const ProductCard = ({ product }) => {
       <span className="ml-1  dark:text-white">{product.rating.rate}</span>
       <span className="text-gray-600 ml-2  dark:text-white">({product.rating.count} reviews)</span>
     </div>
-  </div>
+  </Link>
   );
 };
 
