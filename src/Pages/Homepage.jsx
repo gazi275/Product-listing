@@ -1,18 +1,21 @@
-import Header from '../Components/Header';
-import SearchBar from '../Components/SearchBar';
+
+
 import FilterPanel from '../Components/FilterPanel';
 import SortPanel from '../Components/SortPanel';
 import ProductLists from '../Components/ProductLists';
 import Pagination from '../Components/Pagination';
-import ThemeToggle from '../Components/ThemeToggle';
+
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { FaTh, FaBars } from 'react-icons/fa';
+import { SearchContext } from '../Hook/SearchContext';
+
 
 const Homepage = () => {
+  const {SearchTerm}=useContext(SearchContext)
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  
   const [category, setCategory] = useState('');
   const [sortOption, setSortOption] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -28,16 +31,18 @@ const Homepage = () => {
       .then((response) => setProducts(response.data))
       .catch((error) => console.error('API Error:', error));
   }, []);
+  console.log(products);
 
   // Filter and sort products based on search, category, and sort options
   useEffect(() => {
     let updatedProducts = [...products]; // Clone the products array to avoid mutating state directly
 
-    // Search Filter
-    if (searchTerm) {
-      updatedProducts = updatedProducts.filter((product) =>
-        product.title.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+    //Search
+    if (SearchTerm) {
+      updatedProducts=updatedProducts.filter(product=>
+        typeof SearchTerm=== 'string'&&
+        product.title.toLowerCase().includes(SearchTerm.toLowerCase())
+      )
     }
 
     // Category Filter
@@ -78,7 +83,7 @@ const Homepage = () => {
     }
 
     setFilteredProducts(updatedProducts);
-  }, [searchTerm, category, sortOption, products, priceRange, inStock]);
+  }, [SearchTerm, category, sortOption, products, priceRange, inStock]);
 
   // Get current products for pagination
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -87,21 +92,17 @@ const Homepage = () => {
     indexOfFirstProduct,
     indexOfLastProduct
   );
+  console.log(filteredProducts);
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className="container mx-auto p-4">
-      <div className="flex justify-between items-center">
-        <Header />
-        <ThemeToggle />
-      </div>
+     
+    
       <div className="flex flex-col justify-center items-center md:gap-14 lg:gap-20 md:flex-row my-4 ">
-  {/* Search Bar */}
-  <div className=" md:w-1/5">
-    <SearchBar setSearchTerm={setSearchTerm} />
-  </div>
+  
 
   
   {/* Showing Products and View Toggle */}
